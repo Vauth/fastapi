@@ -6,7 +6,7 @@
 ```shell
 python3 -m pip install virtualenv
 virtualenv venv
-source venv/bin/activate && 
+source venv/bin/activate
 ```
 
 - Install requirements
