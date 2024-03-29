@@ -9,7 +9,7 @@ Notes:
 Returns:
     - Endpoint is /{plugin name}/{function name}/
     - In this case, it will be /pluginexample/Test/
-    - Description will be the description of the function
+    - Description will be the description of the function ("Says your name")
 """
 
 
