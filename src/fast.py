@@ -1,13 +1,16 @@
 #Powered by t.me.feelded
 
 import os
-import ssl
+import sys
 import ast
 import uvicorn
 import inspect
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
+
+# Add path
+sys.path.insert(0, '/session/metadata/')
 
 #FastAPI App
 app = FastAPI(debug=False)
@@ -20,10 +23,10 @@ async def Custom404(_, __):
 
 #Refetch Plugins
 def RefetchPlugins():
-    Plugins = [i[:-3] for i in os.listdir("plugins") if not i.startswith("_")]
+    Plugins = [i[:-3] for i in os.listdir("/session/metadata/plugins") if not i.startswith("_")]
     Details = []
     for name in Plugins:
-        for func in [node.name for node in ast.walk(ast.parse((open("plugins/"+name+".py", 'r')).read())) if isinstance(node, ast.AsyncFunctionDef)]:
+        for func in [node.name for node in ast.walk(ast.parse((open("/session/metadata/plugins/"+name+".py", 'r')).read())) if isinstance(node, ast.AsyncFunctionDef)]:
             exec(f"from plugins.{name} import {func}")
             FuN = ", ".join([j for j in inspect.signature(eval(func)).parameters])
             FuT = ", ".join([d+":"+str(k.annotation).split("'")[1] for d, k in inspect.signature(eval(func)).parameters.items()])
@@ -52,6 +55,12 @@ def Update():
 @app.get("/", include_in_schema=False)
 async def root():
     return {"success": 1, "detail": "Still alive? am I?"}
+
+#Get ENV
+@app.get("/admin/env", description='Working with env', tags=['admin'])
+async def enver(request: Request):
+    env = request.scope["env"]
+    return {"message": "NAME value is: " + env.NAME}
 
 #Updater
 @app.post('/admin/update', description='Update The Plugins', tags=['admin'])
