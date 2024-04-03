@@ -9,17 +9,20 @@ virtualenv venv
 source venv/bin/activate
 ```
 
-- Install requirements
+- Install wrangler (npm)
 
 ```shell
-python3 -m pip install -r requirements.txt
+npm install -g wrangler
 ```
 
 - Run
 
 ```shell
-python3 fast.py
+wrangler dev
 ```
-
+### 🔍 Note
+-  ensure that your `wrangler` version is up to date .
+- For now workers only accept `fastapi` for `requirements.txt` .
+- Python support in Workers is experimental and things will break.
 ### 🗂 Plugins
-#### Check out [pluginexample.py](https://github.com/Vauth/fastapi/blob/main/plugins/pluginexample.py) for more details.
+#### Check out [pluginexample.py](https://github.com/Vauth/fastapi/blob/cloudflare/src/plugins/pluginexample.py) for more details .
