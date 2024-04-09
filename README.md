@@ -22,7 +22,7 @@ npm install -g wrangler
 wrangler dev
 ```
 ### 🔍 Note
--  ensure that your `wrangler` version is up to date .
+-  Ensure that your `wrangler` version is up to date .
 - For now workers only accept `fastapi` for `requirements.txt` .
 - Python support in Workers is experimental and things will break.
 ### 🗂 Plugins
