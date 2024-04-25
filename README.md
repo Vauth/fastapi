@@ -1,4 +1,4 @@
-# Simple Dynamic FastAPI
+# Simple Dynamic FastAPI + [Cloudflare](https://github.com/Vauth/fastapi/tree/cloudflare)
 ### ⚙️ Setup
 
 - Install virtualenv
